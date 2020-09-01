@@ -16,7 +16,7 @@ npm install
 
 To spin up API server
 ```bash
-node ./backend/server.js
+cd backend/ && node server.js
 ```
 
 To start front end

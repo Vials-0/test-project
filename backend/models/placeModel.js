@@ -72,7 +72,7 @@ class PlaceModel {
                 })
                 .write()
 
-            return true;
+            return 'created';
         }
         catch (error) {
             throw error;
@@ -91,7 +91,7 @@ class PlaceModel {
                 .assign(update)
                 .write();
 
-            return true;
+            return 'updated';
         } catch (error) {
             throw error;
         }
@@ -107,7 +107,7 @@ class PlaceModel {
                 .remove({ id: id })
                 .write();
 
-            return true;
+            return 'deleted';
         } catch (error) {
             throw error;
         }
