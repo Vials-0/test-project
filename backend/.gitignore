@@ -3,3 +3,9 @@
 
 # environment variables
 .env
+
+# testing files
+test.js
+
+# database json (will generate when using for the first time
+/database/db.json
