@@ -1,5 +1,6 @@
 const express = require('express');
-const bodyParser = require('body-parser')
+const bodyParser = require('body-parser');
+const cors = require('cors');
 const generateRoutes = require('./api');
 
 // Load environment variables
@@ -9,6 +10,9 @@ const app = express();
 
 // Create application/json parser
 const jsonParser = bodyParser.json()
+
+// Allow cross-origin
+app.use(cors());
 
 // Connect body parser as middleware
 app.use(jsonParser);

@@ -1,0 +1,14 @@
+.header {
+    height: 12vh;
+    background-color: #10375c;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.header-text {
+    color: #FFF;
+    font-family: Arial;
+    font-size: 42px;
+    letter-spacing: 5px;
+}

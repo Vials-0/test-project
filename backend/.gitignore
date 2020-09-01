@@ -9,3 +9,7 @@ test.js
 
 # database json (will generate when using for the first time
 /database/db.json
+
+# misc
+.DS_Store
+../.DS_Store
