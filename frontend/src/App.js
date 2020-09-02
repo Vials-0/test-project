@@ -23,8 +23,20 @@ const App = () => {
     getInitialPlaces();
   }, []);
 
+  // Toggle the form and inputs
   const handleToggleForm = (bool) => {
     setShowForm(bool);
+  }
+
+  // Re-query all places
+  const updatePlaces = () => {
+    const refreshPlaces = async () => {
+      const response = await fetch('http://localhost:22334/places');
+      const res = await response.json();
+      setPlaces(res.result)
+    }
+
+    refreshPlaces();
   }
 
   return (
@@ -33,6 +45,7 @@ const App = () => {
       <PlaceForm
         showing={showForm}
         toggleForm={handleToggleForm}
+        updatePlaces={updatePlaces}
       />
       <section className='card-container'>
         {places.map((place, index) => {

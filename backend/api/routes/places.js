@@ -37,17 +37,19 @@ module.exports = (app) => {
     app.post('/place', async (req, res, next) => {
         try {
             const { place } = req.body;
+
             const {
                 name,
                 description,
                 address,
                 phone,
                 website,
+                imageUrl,
                 requireEmployeeMask,
                 requireCustomerMask
             } = place;
 
-            const result = PlaceModel.createPlace(name, description, address, phone, website, requireEmployeeMask, requireCustomerMask);
+            const result = PlaceModel.createPlace(name, description, address, phone, website, requireEmployeeMask, requireCustomerMask, imageUrl);
             return res
                 .status(200)
                 .json({

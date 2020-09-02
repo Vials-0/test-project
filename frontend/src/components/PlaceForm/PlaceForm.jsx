@@ -6,7 +6,7 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 
-const PlaceForm = ({ showing, toggleForm }) => {
+const PlaceForm = ({ showing, toggleForm, updatePlaces }) => {
     const [place, setPlace] = useState({
         name: '',
         address: '',
@@ -15,6 +15,15 @@ const PlaceForm = ({ showing, toggleForm }) => {
         description: '',
         imageUrl: ''
     })
+
+    const submitDisabled = () => {
+        return (!place.name
+            || !place.address
+            || !place.phone
+            || !place.website
+            || !place.description
+            || !place.imageUrl)
+    }
 
     // Curried change handler
     const handleChange = (property) => (event) => {
@@ -33,7 +42,24 @@ const PlaceForm = ({ showing, toggleForm }) => {
     }
 
     const handleSubmit = () => {
+        const submitPost = async () => {
+            const res = await fetch(
+                'http://localhost:22334/place',
+                {
+                    method: 'POST',
+                    body: JSON.stringify({ place: place }),
+                    headers: { 'Content-Type': 'application/json' }
+                }
+            )
+            const result = await res.json();
 
+            if (result.success) {
+                updatePlaces();
+            }
+            // TODO: Add a message for a failed POST
+        }
+
+        submitPost();
     }
 
     return (
@@ -90,7 +116,11 @@ const PlaceForm = ({ showing, toggleForm }) => {
                             variant='contained'
                             color='primary'
                             style={{ width: '15%', margin: 10 }}
-                        >Submit</Button>
+                            disabled={submitDisabled()}
+                            onClick={handleSubmit}
+                        >
+                            Submit
+                        </Button>
                         <Button
                             variant='contained'
                             color='secondary'
@@ -99,7 +129,9 @@ const PlaceForm = ({ showing, toggleForm }) => {
                                 toggleForm(false);
                                 handleClearPlace();
                             }}
-                        >Cancel</Button>
+                        >
+                            Cancel
+                        </Button>
                     </section>
                 </div >
             )

@@ -56,8 +56,9 @@ class PlaceModel {
      * @param {string} website 
      * @param {boolean} employeeMask 
      * @param {boolean} customerMask 
+     * @param {string} imageUrl
      */
-    createPlace(name, desc, addr, phone, website, employeeMask, customerMask) {
+    createPlace(name, desc, addr, phone, website, employeeMask, customerMask, imageUrl) {
         try {
             db.get('places')
                 .push({
@@ -68,6 +69,7 @@ class PlaceModel {
                     website: website,
                     requireEmployeeMask: employeeMask,
                     requireCustomerMask: customerMask,
+                    imageUrl: imageUrl,
                     id: nanoid()
                 })
                 .write()
