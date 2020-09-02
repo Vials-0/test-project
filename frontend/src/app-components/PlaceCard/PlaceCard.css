@@ -9,6 +9,10 @@
     justify-content: space-around;
 }
 
+.card-description {
+    min-height: 80px;
+}
+
 .mask-required-container {
     display: flex;
     align-items: center;

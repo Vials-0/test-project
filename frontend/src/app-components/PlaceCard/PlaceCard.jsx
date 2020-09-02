@@ -26,7 +26,7 @@ const PlaceCard = ({ place }) => {
             />
             <CardContent>
                 <h1>{place.name}</h1>
-                <p>{place.description}</p>
+                <p className='card-description'>{place.description}</p>
                 <section>
                     <div className='mask-required-container'>
                         <p>Masks required for customers:</p>
