@@ -4,4 +4,17 @@
     margin-top: 2%;
 }
 
-  
+.mask-required-container {
+    display: flex;
+    align-items: center;
+}
+
+.yes-no-icon {
+    margin-left: 15px;
+}
+
+@media only screen and (min-width: 1025px) {
+    .card {
+        width: 30%;
+    }
+}

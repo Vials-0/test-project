@@ -3,12 +3,14 @@ import './App.css';
 
 import {
   Header,
-  PlaceCard
+  PlaceCard,
+  PlaceForm
 } from './components';
 
 
 const App = () => {
   const [places, setPlaces] = useState([]);
+  const [showForm, setShowForm] = useState(false);
 
   // Get initial places on mount
   useEffect(() => {
@@ -21,9 +23,17 @@ const App = () => {
     getInitialPlaces();
   }, []);
 
+  const handleToggleForm = (bool) => {
+    setShowForm(bool);
+  }
+
   return (
     <div className='App'>
       <Header />
+      <PlaceForm
+        showing={showForm}
+        toggleForm={handleToggleForm}
+      />
       <section className='card-container'>
         {places.map((place, index) => {
           return <PlaceCard

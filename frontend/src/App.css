@@ -17,3 +17,9 @@ h1 {
 body {
   background-color: #f4f6ff;
 }
+
+@media only screen and (min-width: 1025px) {
+  .card-container {
+    justify-content: space-around;
+  }
+}
