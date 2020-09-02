@@ -9,6 +9,11 @@
   flex-wrap: wrap;
 }
 
+/* fill grid to prevent flexbox centering */
+.placeholder-card {
+    width: 30%;
+}
+
 h1 {
   margin: 0;
   text-align: center;

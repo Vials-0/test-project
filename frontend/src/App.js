@@ -39,6 +39,15 @@ const App = () => {
     refreshPlaces();
   }
 
+  // Used to generate 'fake' elements to ensure
+  // flexbox'd grid starts from left and not center
+  // when lengths is less than three on that row
+  const blankFillSpaces = places.length > 3
+    ? (3 - (places.length % 3))
+    : 3 - places.length;
+  const blankFillArray = new Array(blankFillSpaces).fill('');
+  const renderFill = blankFillSpaces < 3;
+
   return (
     <div className='App'>
       <Header />
@@ -54,6 +63,12 @@ const App = () => {
             place={place}
           />
         })}
+        {/* generate empty objects to correct grid */}
+        {renderFill && (
+          blankFillArray.map(item => {
+            return <div className='placeholder-card' />
+          })
+        )}
       </section>
     </div>
   );

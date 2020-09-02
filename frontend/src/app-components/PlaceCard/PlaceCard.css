@@ -4,12 +4,6 @@
     margin-top: 2%;
 }
 
-.fullscreen-card {
-    width: 80%;
-    margin: 50px auto 50px auto;
-    min-height: 80vh;
-}
-
 .place-details-container {
     display: flex;
     justify-content: space-around;
@@ -29,8 +23,19 @@
     width: 100%;
 }
 
+.card-image-background {
+    background-size: cover;
+    height: 350px;
+    width: 100%;
+}
+
+/* desktop */
 @media only screen and (min-width: 1025px) {
     .card {
         width: 30%;
+    }
+
+    .card-image-background {
+        height: 30vh;
     }
 }

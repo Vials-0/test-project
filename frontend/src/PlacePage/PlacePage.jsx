@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './PlacePage.css';
 import { useParams } from "react-router-dom";
 
-import { PlaceCard } from '../app-components';
+import PlaceProfile from './components/PlaceProfile';
 
 const PlacePage = (props) => {
     const { id } = useParams();
@@ -21,9 +21,8 @@ const PlacePage = (props) => {
     return (
         <div>
             {place && (
-                <PlaceCard
+                <PlaceProfile
                     place={place}
-                    fullScreen={true}
                 />
             )}
 

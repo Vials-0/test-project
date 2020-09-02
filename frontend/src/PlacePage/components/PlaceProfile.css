@@ -1,0 +1,56 @@
+.container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.profile-info-container {
+    margin: 30px;
+    width: 100%;
+}
+
+.details-container {
+    display: flex;
+    align-items: center;
+}
+
+.details-text {
+    margin-left: 10px;
+}
+
+.link {
+    text-decoration: none;
+    font-family: Arial;
+    margin: 14px;
+}
+
+.profile-image {
+    width: 95%;
+    margin: 20px;
+    border: 1px solid #000;
+}
+
+.delete-container {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    padding: 10px;
+}
+
+.headers {
+    font-family: Arial;
+}
+
+@media only screen and (min-width: 1025px) {
+    .profile-image {
+        width: 50%;
+    }
+
+    .profile-info-container {
+        margin: 20px;
+        width: 40%;
+    }
+
+    .delete-container {
+        align-self: flex-end;
+    }
+}
