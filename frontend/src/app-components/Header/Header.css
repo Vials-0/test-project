@@ -9,6 +9,12 @@
 .header-text {
     color: #FFF;
     font-family: Arial;
-    font-size: 42px;
+    font-size: 24px;
     letter-spacing: 5px;
+}
+
+@media only screen and (min-width: 1025px) {
+    .header-text {
+        font-size: 42px;
+    }
 }

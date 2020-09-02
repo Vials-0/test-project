@@ -5,7 +5,7 @@ import {
   Header,
   PlaceCard,
   PlaceForm
-} from './components';
+} from './app-components';
 
 
 const App = () => {
