@@ -4,7 +4,9 @@ import './PlaceForm.css';
 // Material UI
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import AddCircleIcon from '@material-ui/icons/AddCircle';
+import Checkbox from '@material-ui/core/Checkbox';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+
 
 const PlaceForm = ({ showing, toggleForm, updatePlaces }) => {
     const [place, setPlace] = useState({
@@ -15,6 +17,8 @@ const PlaceForm = ({ showing, toggleForm, updatePlaces }) => {
         description: '',
         imageUrl: ''
     })
+    const [requireEmployeeMask, setRequireEmployeeMask] = useState(false);
+    const [requireCustomerMask, setRequireCustomerMask] = useState(false);
 
     const submitDisabled = () => {
         return (!place.name
@@ -38,16 +42,19 @@ const PlaceForm = ({ showing, toggleForm, updatePlaces }) => {
             website: '',
             description: '',
             imageUrl: ''
-        })
+        });
+        setRequireEmployeeMask(false);
+        setRequireCustomerMask(false);
     }
 
     const handleSubmit = () => {
         const submitPost = async () => {
+            const placeBody = { ...place, requireEmployeeMask, requireCustomerMask }
             const res = await fetch(
                 'http://localhost:22334/place',
                 {
                     method: 'POST',
-                    body: JSON.stringify({ place: place }),
+                    body: JSON.stringify({ place: placeBody }),
                     headers: { 'Content-Type': 'application/json' }
                 }
             )
@@ -55,6 +62,8 @@ const PlaceForm = ({ showing, toggleForm, updatePlaces }) => {
 
             if (result.success) {
                 updatePlaces();
+                handleClearPlace();
+                toggleForm(false);
             }
             // TODO: Add a message for a failed POST
         }
@@ -84,14 +93,14 @@ const PlaceForm = ({ showing, toggleForm, updatePlaces }) => {
                         />
                         <TextField
                             style={{ margin: 10 }}
-                            label="Phone Number"
+                            label="Phone"
                             fullWidth
                             onChange={handleChange('phone')}
                             value={place.phone}
                         />
                         <TextField
                             style={{ margin: 10 }}
-                            label="Website URL"
+                            label="Website"
                             fullWidth
                             onChange={handleChange('website')}
                             value={place.website}
@@ -112,26 +121,57 @@ const PlaceForm = ({ showing, toggleForm, updatePlaces }) => {
                             onChange={handleChange('imageUrl')}
                             value={place.imageUrl}
                         />
-                        <Button
-                            variant='contained'
-                            color='primary'
-                            style={{ width: '15%', margin: 10 }}
-                            disabled={submitDisabled()}
-                            onClick={handleSubmit}
-                        >
-                            Submit
+                    </section>
+                    <section className='place-form-section'>
+                        <div>
+                            <FormControlLabel
+                                control={
+                                    <Checkbox
+                                        checked={requireCustomerMask}
+                                        name="customer-mask"
+                                        onChange={() => {
+                                            setRequireCustomerMask(!requireCustomerMask)
+                                        }}
+                                    />
+                                }
+                                label="Customer Masks Required"
+                            />
+
+                            <FormControlLabel
+                                control={
+                                    <Checkbox
+                                        checked={requireEmployeeMask}
+                                        name="employee-mask"
+                                        onChange={() => {
+                                            setRequireEmployeeMask(!requireEmployeeMask)
+                                        }}
+                                    />
+                                }
+                                label="Employee Masks Required"
+                            />
+                        </div>
+                        <div style={{ display: 'flex' }}>
+                            <Button
+                                variant='contained'
+                                color='primary'
+                                style={{ margin: 10 }}
+                                disabled={submitDisabled()}
+                                onClick={handleSubmit}
+                            >
+                                Submit
+                            </Button>
+                            <Button
+                                variant='contained'
+                                color='secondary'
+                                style={{ margin: 10 }}
+                                onClick={() => {
+                                    toggleForm(false);
+                                    handleClearPlace();
+                                }}
+                            >
+                                Cancel
                         </Button>
-                        <Button
-                            variant='contained'
-                            color='secondary'
-                            style={{ width: '15%', margin: 10 }}
-                            onClick={() => {
-                                toggleForm(false);
-                                handleClearPlace();
-                            }}
-                        >
-                            Cancel
-                        </Button>
+                        </div>
                     </section>
                 </div >
             )

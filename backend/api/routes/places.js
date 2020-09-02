@@ -37,7 +37,6 @@ module.exports = (app) => {
     app.post('/place', async (req, res, next) => {
         try {
             const { place } = req.body;
-
             const {
                 name,
                 description,

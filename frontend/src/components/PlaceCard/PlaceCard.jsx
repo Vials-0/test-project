@@ -12,6 +12,10 @@ import { default as NoIcon } from '@material-ui/icons/Cancel';
 const PlaceCard = ({ place }) => {
     return (
         <Card className='card'>
+            <img
+                className='card-image'
+                src={place.imageUrl}
+            />
             <CardContent>
                 <h1>{place.name}</h1>
                 <p>{place.description}</p>
