@@ -136,7 +136,6 @@ const PlaceForm = ({ showing, toggleForm, updatePlaces }) => {
                                 }
                                 label="Customer Masks Required"
                             />
-
                             <FormControlLabel
                                 control={
                                     <Checkbox
